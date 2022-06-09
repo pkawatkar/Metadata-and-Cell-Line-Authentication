@@ -100,8 +100,8 @@ def clean_selected_series(group_name_series):
     logger.debug('\nupdate1:\n{}'.format(new_series))
     new_series = new_series.str.replace(" ", "_")
     logger.debug('\nupdate2:\n{}'.format(new_series))
-    #new_series = group_name_series.str.replace("[^A-Za-z0-9]+","")
-    #logger.debug('\nupdate3:\n{}'.format(new_series))
+    new_series = new_series.str.replace("[^A-Za-z0-9_]+","")
+    logger.debug('\nupdate3:\n{}'.format(new_series))
     #logger.debug('\nupdated_series:\n{}'.format(new_series))
     return new_series
 
