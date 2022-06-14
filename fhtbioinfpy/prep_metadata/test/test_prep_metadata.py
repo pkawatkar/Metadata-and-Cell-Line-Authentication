@@ -7,12 +7,13 @@ import os
 import tempfile
 
 
+
 logger = logging.getLogger(setup_logger.LOGGER_NAME)
 
 class TestPrepMetadata(unittest.TestCase):
 
     def setUp(self):
-        print("Setup")
+        logger.debug("Setup")
         self.metadata_subdir = "./assets/metadata/"
         self.metadata_file ="2021-11-09 next-gen-sequencing-annotations-ATACseq-KA.txt"
         self.input_metadata_file = "./assets/metadata/2021-11-09 next-gen-sequencing-annotations-ATACseq-KA.txt"
@@ -22,8 +23,7 @@ class TestPrepMetadata(unittest.TestCase):
         # encoding="ISO-8859-1"
 
     def tearDown(self):
-        print("Teardown")
-        pass
+        logger.debug("Teardown")
 
 
     #def test_main_functional(self):
@@ -33,63 +33,62 @@ class TestPrepMetadata(unittest.TestCase):
     #    pm.main(None)
 
 
-    def test_create_full_path(self):
-        print("test_create_full_path")
-        #checks if file exists
-        metadata_dir = pm.create_full_path(self.metadata_subdir, self.metadata_file)
-        logger.debug("Metadata file exists: {}".format(metadata_dir))
-        self.assertTrue(os.path.exists(metadata_dir))
-        #checks that the name of the path is correct
-        self.assertEqual(metadata_dir, self.input_metadata_file)
+    # def test_create_full_path(self):
+    #     logger.debug("test_create_full_path")
+    #     metadata_dir = pm.create_full_path(self.metadata_subdir, self.metadata_file)
+    #     "metadata_dir: {}".format(metadata_dir)
+    #     # #checks if file exists
+    #     # metadata_dir = pm.create_full_path(self.metadata_subdir, self.metadata_file)
+    #     # logger.debug("Metadata file exists: {}".format(metadata_dir))
+    #     # self.assertTrue(os.path.exists(metadata_dir))
+    #     #checks that the name of the path is correct
+    #     self.assertEqual(metadata_dir, self.input_metadata_file)
 
     def test_load_metadata(self):
-        print("test_load_metadata")
+        logger.debug("test_load_metadata")
+        # check that the input_metadata_file exists
+        self.assertTrue(os.path.exists(self.input_metadata_file))
         # check the two dataframes are equal
         orig_metadata = pm.load_metadata(self.input_metadata_file)
         logger.debug("orig_metadata.shape: {}".format(orig_metadata.shape))
         self.assertEqual(orig_metadata.shape, self.df.shape)
 
     def test_remove_samples(self):
-        print("test_remove_samples")
-        #samples_to_remove_from_metadata = [] # ["G8M54"]
-        #edge case 1 --> remove 1 sample
+        logger.debug("test_remove_samples")
+        #edge case 1 --> remove 1 row
         test_df = pd.DataFrame({"a":["hello", "apple", "basketball"], "b":["yellow","cherry", "book"], "c":["happy","sad", "laugh"], "d":["python","java", "html"]})
         logger.debug('\ntest_df:\n{}'.format(test_df))
-        samples_to_remove = "c"
-        updated_df = pm.remove_samples(test_df, samples_to_remove)
+        rows_to_remove = 1
+        updated_df = pm.remove_samples(test_df, rows_to_remove)
         logger.debug('\nupdated_df:\n{}'.format(updated_df))
-        expected_df = pd.DataFrame({"a":["hello", "apple", "basketball"], "b":["yellow","cherry", "book"], "d":["python","java", "html"]})
+        expected_df = pd.DataFrame({"a":["hello", "basketball"], "b":["yellow", "book"], "c":["happy", "laugh"], "d":["python", "html"]})
         logger.debug('\nexpected_df:\n{}'.format(expected_df))
+ 
         isEqual = updated_df == expected_df
         logger.debug('\nisEqual:\n{}'.format(isEqual))
-        final_bool = isEqual.all()
-        logger.debug('\nfinal_bool:\n{}'.format(final_bool))
-        self.assertTrue(final_bool.all())
-
-        #edge case 2 --> remove multiple samples
-        test_df = pd.DataFrame({"a":["hello", "apple", "basketball"], "b":["yellow","cherry", "book"], "c":["happy","sad", "laugh"], "d":["python","java", "html"]})
+        self.assertTrue(isEqual.all)
+    
+        #edge case 2 --> remove multiple rpws
+        test_df = pd.DataFrame({"a":["hello", "apple", "basketball", "banana"], "b":["yellow","cherry", "book", "carrot"], "c":["happy","sad", "laugh", "angry"], "d":["python","java", "html", "rstudio"]})
         logger.debug('\ntest_df:\n{}'.format(test_df))
-        samples_to_remove = ["a", "c"]
-        updated_df = pm.remove_samples(test_df, samples_to_remove)
+        rows_to_remove = [1, 3]
+        updated_df = pm.remove_samples(test_df, rows_to_remove)
         logger.debug('\nupdated_df:\n{}'.format(updated_df))
-        expected_df = pd.DataFrame({"b":["yellow","cherry", "book"], "d":["python","java", "html"]})
+        expected_df = pd.DataFrame({"a":["hello", "basketball"], "b":["yellow", "book"], "c":["happy", "laugh"], "d":["python", "html"]})
         logger.debug('\nexpected_df:\n{}'.format(expected_df))
+        
         isEqual = updated_df == expected_df
         logger.debug('\nisEqual:\n{}'.format(isEqual))
-        final_bool = isEqual.all()
-        logger.debug('\nfinal_bool:\n{}'.format(final_bool))
-        self.assertTrue(final_bool.all())
-
-
-
+        self.assertTrue(isEqual.all)
+        
     def test_check_replicate_number_per_group(self):
-        print("test_check_replicate_number_per_group")
+        logger.debug("test_check_replicate_number_per_group")
         #edge case 1 --> 3 replicates
         test_df = pd.DataFrame({"a":["hello", "apple", "basketball", "apple", "crayon", "dog", "apple", "crayon", "dog"], "b":["yellow","cherry", "book", "yellow","cherry", "book", "yellow","cherry", "book"], "c":["happy","sad", "laugh", "apple", "crayon", "dog", "apple", "crayon", "dog"]})
         selected_cols = "b"
         all3s = pm.check_replicate_number_per_group(test_df, selected_cols, 3)
         logger.debug('\nall3s:\n{}'.format(all3s))
-        checker = all3s == "3"
+        checker = all3s == 3
         logger.debug('\nchecker:\n{}'.format(checker))
         isequal = checker.all()
         logger.debug('\nisequal:\n{}'.format(isequal))
@@ -108,11 +107,9 @@ class TestPrepMetadata(unittest.TestCase):
             pm.check_replicate_number_per_group(test_df, selected_cols, 3, lambda : False)
         except pm.FhtbioinfpyPrepMetadataCheckValueReplicatesForGroups:
             self.fail("check_replicate_number_per_group() unexpectedly raised FhtbioinfpyPrepMetadataCheckValueReplicatesForGroups exception!")
-        
-
 
     def test_add_string_concated_columns(self):
-        print("test_add_string_concated_columns")
+        logger.debug("test_add_string_concated_columns")
         test_df = pd.DataFrame({"pert_dose":[3, 4, 5], "pert_dose_unit": ["nM", "nM", "nM"], "pert_time":[10, 11, 12], "pert_time_unit": ["h", "h", "h"]})
         logger.debug('\ntest_df:\n{}'.format(test_df))
         new_df = pm.add_string_concated_columns(test_df)
@@ -122,11 +119,10 @@ class TestPrepMetadata(unittest.TestCase):
             subset = True
         logger.debug('\nsubset:\n{}'.format(subset))
         self.assertTrue(subset)
-        self.assertEqual(new_df["pert_dose_str"][0],"3nM")
-
+        self.assertEqual(new_df["pert_dose_str"][0],"3 nM")
 
     def test_verify_group_def_columns_in_metadata(self):
-        print("test_verify_group_def_columns_in_metadata")
+        logger.debug("test_verify_group_def_columns_in_metadata")
 
         #edge case 1 --> only one column in df is selected
         test_df = pd.DataFrame({"a":["hello", "apple", "basketball"], "b":["yellow","cherry", "book"], "c":["happy","sad", "laugh"], "d":["python","java", "html"]})
@@ -151,15 +147,46 @@ class TestPrepMetadata(unittest.TestCase):
             #edge case 4 --> more than one column not found in df (print out exception)
             test_df = pd.DataFrame({"a":["hello", "apple", "basketball"], "b":["yellow","cherry", "book"], "c":["happy","sad", "laugh"], "d":["python","java", "html"]})
             cols = ["a", "f", "h"] #columns f and h are not found in df
-            pm.verify_group_def_columns_in_metadata(test_df, cols)
-        
+            pm.verify_group_def_columns_in_metadata(test_df, cols)      
 
-    def test_clean_selected_series(self):
-        print("test_clean_selected_series")
+    def test_build_group_names(self):
+        logger.debug("test_build_group_names")
+        #edge case 1 --> one selected column
+        test_df = pd.DataFrame({"a":["hello", "apple", "basketball"], "b":["yellow","cherry", "book"], "c":["happy","sad", "laugh"], "d":["python","java", "html"]})
+        logger.debug('\ntest_df:\n{}'.format(test_df))
+        selected_cols = ["c"]
+        new_groups_df = pm.build_group_names(test_df, selected_cols)
+        logger.debug('\nnew_groups_df:\n{}'.format(new_groups_df))
+        expected_group_names = ["happy", "sad", "laugh"]
+        logger.debug('\nexpected_group_names:\n{}'.format(expected_group_names))
+        self.assertEqual(list(new_groups_df), expected_group_names)
+        # isEqual = new_groups_df == expected_group_names
+        # logger.debug('\nisEqual:\n{}'.format(isEqual))
+        # final_bool = isEqual.all
+        # logger.debug('\nfinal_bool:\n{}'.format(final_bool))
+        # self.assertTrue(final_bool)
+
+        #edge case 2 --> more than one selected column
+        test_df = pd.DataFrame({"a":["hello", "apple", "basketball"], "b":["yellow","cherry", "book"], "c":["happy","sad", "laugh"], "d":["python","java", "html"]})
+        logger.debug('\ntest_df:\n{}'.format(test_df))
+        selected_cols = ["a","c"]
+        new_groups_df = pm.build_group_names(test_df, selected_cols)
+        logger.debug('\nnew_groups_df:\n{}'.format(list(new_groups_df)))
+        expected_group_names = ["hello_happy", "apple_sad", "basketball_laugh"]
+        logger.debug('\nexpected_groups_df:\n{}'.format(expected_group_names))
+        self.assertEqual(list(new_groups_df), expected_group_names)
+        # isEqual = new_groups_df == expected_groups_df
+        # logger.debug('\nisEqual:\n{}'.format(isEqual))
+        # final_bool = isEqual.all
+        # logger.debug('\nfinal_bool:\n{}'.format(final_bool))
+        # self.assertTrue(final_bool)
+        
+    def test_clean_group_names(self):
+        logger.debug("test_clean_selected_series")
         #edge case1 --> no cleaning necessary, dataframe before and after should be same
         test_df = pd.DataFrame({"a":["hello", "apple", "basketball"], "b":["yellow","cherry", "book"]})
         logger.debug('\ntest_df:\n{}'.format(test_df))
-        new_series = pm.clean_selected_series(test_df["a"])
+        new_series = pm.clean_group_names(test_df["a"])
         logger.debug('\nnew_series:\n{}'.format(new_series))
         checker = new_series.equals(test_df["a"])
         logger.debug('\nchecker:\n{}'.format(checker))
@@ -168,47 +195,18 @@ class TestPrepMetadata(unittest.TestCase):
         #edge case2 -->cleaning necessary
         test_series = pd.Series(["he-llo", "app)le", "basketball game"])
         logger.debug('\ntest_series:\n{}'.format(test_series))
-        new_series = pm.clean_selected_series(test_series)
+        new_series = pm.clean_group_names(test_series)
         logger.debug('\nnew_series:\n{}'.format(new_series))
-        expected_series = pd.Series(["hello", "apple","basketball_game"])
+        expected_series = pd.Series(["hello", "apple","basketballgame"])
         logger.debug('\nexpected_series:\n{}'.format(expected_series))
         isequal = new_series == expected_series
         logger.debug('\nisequal:\n{}'.format(isequal))
         self.assertTrue(isequal.all())
 
-    def test_build_group_names(self):
-        print("test_build_group_names")
-        #edge case 1 --> one selected column
-        test_df = pd.DataFrame({"a":["hello", "apple", "basketball"], "b":["yellow","cherry", "book"], "c":["happy","sad", "laugh"], "d":["python","java", "html"]})
-        logger.debug('\ntest_df:\n{}'.format(test_df))
-        selected_cols = ["c"]
-        new_groups_df = pm.build_group_names(test_df, selected_cols)
-        logger.debug('\nnew_groups_df:\n{}'.format(new_groups_df))
-        expected_groups_df = pd.DataFrame({"group":["happy", "sad", "laugh"]})
-        logger.debug('\nexpected_groups_df:\n{}'.format(expected_groups_df))
-        isEqual = new_groups_df == expected_groups_df
-        logger.debug('\nisEqual:\n{}'.format(isEqual))
-        final_bool = isEqual.all()
-        logger.debug('\nfinal_bool:\n{}'.format(final_bool))
-        self.assertTrue(final_bool.all())
-
-        #edge case 2 --> more than one selected column
-        test_df = pd.DataFrame({"a":["hello", "apple", "basketball"], "b":["yellow","cherry", "book"], "c":["happy","sad", "laugh"], "d":["python","java", "html"]})
-        logger.debug('\ntest_df:\n{}'.format(test_df))
-        selected_cols = ["a","c"]
-        new_groups_df = pm.build_group_names(test_df, selected_cols)
-        logger.debug('\nnew_groups_df:\n{}'.format(new_groups_df))
-        expected_groups_df = pd.DataFrame({"group":["hello_happy", "apple_sad", "basketball_laugh"]})
-        logger.debug('\nexpected_groups_df:\n{}'.format(expected_groups_df))
-        isEqual = new_groups_df == expected_groups_df
-        logger.debug('\nisEqual:\n{}'.format(isEqual))
-        final_bool = isEqual.all()
-        logger.debug('\nfinal_bool:\n{}'.format(final_bool))
-        self.assertTrue(final_bool.all())
-
+    
 
     def test_add_groups_to_df(self):
-        print("test_add_groups_to_df")
+        logger.debug("test_add_groups_to_df")
         test_df = pd.DataFrame({"a":["hello", "apple", "basketball"], "b":["yellow","cherry", "book"]})
         logger.debug('\ntest_df:\n{}'.format(test_df))
         groups_df = pd.DataFrame({"group":["sample1_data", "sample2_data", "sample3_data"]})
@@ -219,20 +217,20 @@ class TestPrepMetadata(unittest.TestCase):
         logger.debug('\nupdated_df:\n{}'.format(updated_df))
         isEqual = updated_df == expected_df
         logger.debug('\nisEqual:\n{}'.format(isEqual))
-        final_bool = isEqual.all()
+        final_bool = isEqual.all
         logger.debug('\nfinal_bool:\n{}'.format(final_bool))
-        self.assertTrue(final_bool.all())
+        self.assertTrue(final_bool)
 
     def test_add_experiment_id(self):
-        print("test_add_experiment_id")
+        logger.debug("test_add_experiment_id")
         experiment_id = "NS-21.0138"
         new_df = pm.add_experiment_id(self.df, experiment_id)
-        if {'experiment_id'}.issubset(new_df):
-            pass
-
+        subset = {'experiment_id'}.issubset(new_df)
+        self.assertTrue(subset)
 
     def test_create_R_Groups(self):
-        print("test_create_R_Groups")
+        logger.debug("test_create_R_Groups")
+        
         #edge case 1 --> all start with a number / all are True
         test_df = pd.DataFrame({"a":[str(3), str(4), str(5)], "b":[str(8), str(9), str(10)]})
         logger.debug('\ntest_df:\n{}'.format(test_df))
@@ -243,16 +241,16 @@ class TestPrepMetadata(unittest.TestCase):
         check2 = check1 == "x_"
         logger.debug('\ncheck2:\n{}'.format(check2))
         self.assertTrue(check2.all()) #all() true if all true
-        
+
         # edge case 2 --> none start with a number / all are False
         test_df = pd.DataFrame({"a":["AB", "BC", "CD", "DE"], "b":["EF", "FG", "GH", "HI"]})
         logger.debug('test_df: \n{}\n'.format(test_df))
         new_df = pm.create_R_Groups(test_df, "b")
         logger.debug('new_Df: \n{}\n'.format(new_df))
         check1 = new_df.b.str[0:2]
-        #logger.debug('\ncheck1:\n{}'.format(check1))
+        logger.debug('\ncheck1:\n{}'.format(check1))
         check2 = check1 == "x_"
-        #logger.debug('\ncheck2:\n{}'.format(check2))
+        logger.debug('\ncheck2:\n{}'.format(check2))
         self.assertFalse(check2.all())
         
         # edge case 3 --> mix of strings that start with numbers and letters
@@ -271,16 +269,24 @@ class TestPrepMetadata(unittest.TestCase):
         #else--> check1 is a nonnumber string and isn't equal to "x_" so continues running through rows
         self.assertTrue(allWork)
     
+    def test_build_output_file_path(self):
+        experiment_id = "id"
+        test_df = pd.DataFrame({"a":["1A", "2B", "CC", "3D"], "b":["5F", "GG", "4H", "HI"]})
 
+        output_filename = pm.build_output_file_path(experiment_id, test_df.shape)
+        print('\noutput filename:\n{}'.format(output_filename))
+        expected_filename = "id_metadata_r_4_x_2_.txt"
+        self.assertEqual(output_filename, expected_filename)
+'''
     def test_save_to_csv(self):
-        print("test_save_to_csv")
+        logger.debug("test_save_to_csv")
 
         #opening a file or directory --> make sure it gets cleaned up
         with tempfile.TemporaryDirectory(prefix = "fhtbioinfpy_test_prep_metadata") as wkdir:
             output_filepath = os.path.join(wkdir, "prep_metadata")
             pm.save_to_csv(output_filepath, self.df)
             self.assertTrue(os.path.exists(output_filepath))
-
+'''
         
 
 
