@@ -19,13 +19,13 @@ logger = logging.getLogger(setup_logger.LOGGER_NAME)
 def build_parser():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("--verbose", "-v", help="Whether to print a bunch of output.", action="store_true", default=False)
-    # parser.add_argument("--metadata_subdir", help="subdirectory for metadata", type=str, default="metadata")
+    parser.add_argument("--output_metadata_subdir", help="subdirectory for metadata", type=str, default="./metadata/")
     # parser.add_argument("--input_metadata_file_path", help = "the entire metadata path inputted by user", type = str, required = True)
     parser.add_argument("--input_metadata_file", help = "the metadata file", type = str, required = True)
     parser.add_argument("--experiment_id", help = "specific id for experiment", required = True)
     parser.add_argument("--samples_to_remove_from_metadata", help = "which samples user desires to remove from metadata, if any.", default=[], nargs="+")
-    parser.add_argument("--metadata_columns_to_build_groups", help="metadata columns selected to build groups.", default = [], nargs="+")
-    parser.add_argument("--expected_number_replicates", help = "the expected number of replicates the user wants", required = True)
+    parser.add_argument("--metadata_columns_to_build_groups", help="metadata columns selected to build groups.", required = True,  nargs="+")
+    parser.add_argument("--expected_number_replicates", help = "the expected number of replicates the user wants", default = 3)
     return parser
 
 # def create_full_path(metadata_subdir, metadata_file):
@@ -94,18 +94,20 @@ def verify_group_def_columns_in_metadata(metadata_df, metadata_columns_to_build_
         return True
 
 # takes in the series that you want to add into the original dataframe and cleans it
-def clean_group_names(group_name_series):
+'''def clean_group_names(group_name_series):
     group_name_series = group_name_series.astype(str)
     new_series = group_name_series.str.replace("[^A-Za-z0-9.]","")
     logger.debug('\nupdate1:\n{}'.format(new_series))
     new_series = new_series.str.replace(" ", "")
     logger.debug('\nupdate2:\n{}'.format(new_series))
     return new_series
-
-def build_group_names(cleaned_metadata_df, group_def_cols):
-    group_def_cols = cleaned_metadata_df[group_def_cols] # subset the columns that will create the groups
-    group_names = group_def_cols.fillna('').apply(lambda row: "_".join(row), axis = 1)
-    logger.debug('\nafter removal:\n{}'.format(group_names))
+'''
+def build_group_names(metadata_df, group_def_cols):
+    group_def_df = metadata_df[group_def_cols].copy() # subset the columns that will create the groups
+    for col in group_def_cols:
+        group_def_df[col] = group_def_df[col].astype(str).str.replace("[^A-Za-z0-9.]","")
+    group_names = group_def_df.fillna('').apply(lambda row: "_".join(row), axis = 1)
+    logger.debug('\ngroup_names:\n{}'.format(group_names))
     return group_names
 
 def add_groups_to_df(original_df, groups_series):
@@ -133,18 +135,20 @@ def create_R_Groups(original_df, col_name):
 
     return original_df
 
-def build_output_file_path(id, df_shape):
-    name_components = [id, "metadata_r", df_shape[0], "x", df_shape[1], ".txt"]
+def build_output_file_name(id, df_shape):
+    # name_components = [id, "metadata_r{}", df_shape[0], "x", df_shape[1], ".txt"]
     #output_filename = id + name + str(df_shape[0]) + 'x' + str(df_shape[1]) + '.txt'
-    logger.debug("name_components : {}".format(name_components))
+    # logger.debug("name_components : {}".format(name_components))
 
-    output_filename ="_".join([str(x) for x in name_components])
-    logger.debug("output_filepath : {}".format(output_filename))
+    # output_filename ="_".join([str(x) for x in name_components])
+    output_filename = "{exp_id}_metadata_r{nrows}x{ncols}.txt".format(
+        exp_id=id, nrows=df_shape[0], ncols=df_shape[1]
+    )
+    logger.debug("output_filename : {}".format(output_filename))
 
     return output_filename
 
 def main(args):
-
 
     #convert files to data frame
     inp_df = load_metadata(args.input_metadata_file)
@@ -161,13 +165,13 @@ def main(args):
     verify_group_def_columns_in_metadata(metadata_df, args.metadata_columns_to_build_groups)
 
     #remove dashes and other special characters from group definition columns
-    cleaned_data = clean_group_names(args.metadata_columns_to_build_groups)
+    # cleaned_series = clean_group_names(args.metadata_columns_to_build_groups)
 
     #concatenate "group definitions" columns to form group names
-    df_with_selected_columns = build_group_names(cleaned_data,  args.metadata_columns_to_build_groups)
+    group_names = build_group_names(metadata_df,  args.metadata_columns_to_build_groups)
 
     #add groups to metadata dataframe
-    metadata_df = add_groups_to_df(metadata_df, df_with_selected_columns)
+    metadata_df = add_groups_to_df(metadata_df, group_names)
 
     #add experiment id
     metadata_df = add_experiment_id(metadata_df, args.experiment_id)
@@ -176,10 +180,15 @@ def main(args):
     metadata_df = create_R_Groups(metadata_df, 'group')
 
     # build output file path
-    groups_from_selected_columns_output_filepath = build_output_file_path(args.experiment_id, metadata_df.shape)
+    output_filename = build_output_file_name(args.experiment_id, metadata_df.shape)
+
+    output_filepath = os.path.join(args.output_metadata_subdir, output_filename)
 
     #save as csv/txt file
-    metadata_df.to_csv(groups_from_selected_columns_output_filepath, sep="\t")
+    metadata_df.to_csv(output_filepath, sep="\t")
+
+    logger.debug("metadata_df.shape: {}".format(metadata_df.shape))
+    logger.debug("metadata_df.iloc[3,2]: {}".format(metadata_df.iloc[3,2]))
 
 class FhtbioinfpyPrepMetadataVerifyColumnsForGroups(Exception):
     pass
@@ -188,7 +197,7 @@ class FhtbioinfpyPrepMetadataCheckValueReplicatesForGroups(Exception):
     pass
 
 if __name__ == "__main__":
-    args = build_parser().parse_args(sys.argv[1:])
+    args = build_parser().parse_args(sys.argv[1:]) #list of command line that isnt python
     setup_logger.setup(verbose=args.verbose)
     logger.debug("args:  {}".format(args))
 

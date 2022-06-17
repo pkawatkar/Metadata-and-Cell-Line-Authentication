@@ -25,24 +25,25 @@ class TestPrepMetadata(unittest.TestCase):
     def tearDown(self):
         logger.debug("Teardown")
 
+    def test_main_functional(self):
+        with tempfile.TemporaryDirectory() as tmpdirname:
+            logger.debug("test_main tmpdirname:  {}".format(tmpdirname))
+            arg_list = ["--input_metadata_file", self.input_metadata_file,
+                        "--experiment_id", "test_main_experiment_id",
+                        "--metadata_columns_to_build_groups", "pert_id", "bio_context_id",
+                        "--output_metadata_subdir", tmpdirname
+            ]
 
-    #def test_main_functional(self):
-        """ usually when testing main we have to do that as a functional test - we pick a reasonable set of parameters for a 
-        happy path and run through those to make sure that works
-        """
-    #    pm.main(None)
+            args = pm.build_parser().parse_args(arg_list)
+            logger.debug(args)
+            pm.main(args)
 
+            expected_output_file = os.path.join(tmpdirname, "test_main_experiment_id_metadata_r6x33.txt") # from build_output_file_name
+            logger.debug("expected_output_file: {}".format(expected_output_file))
+            self.assertTrue(os.path.isfile(expected_output_file))
 
-    # def test_create_full_path(self):
-    #     logger.debug("test_create_full_path")
-    #     metadata_dir = pm.create_full_path(self.metadata_subdir, self.metadata_file)
-    #     "metadata_dir: {}".format(metadata_dir)
-    #     # #checks if file exists
-    #     # metadata_dir = pm.create_full_path(self.metadata_subdir, self.metadata_file)
-    #     # logger.debug("Metadata file exists: {}".format(metadata_dir))
-    #     # self.assertTrue(os.path.exists(metadata_dir))
-    #     #checks that the name of the path is correct
-    #     self.assertEqual(metadata_dir, self.input_metadata_file)
+            loaded_csv_file = pd.read_csv(expected_output_file, sep = "\t")
+            self.assertFalse(loaded_csv_file.empty)
 
     def test_load_metadata(self):
         logger.debug("test_load_metadata")
@@ -147,7 +148,8 @@ class TestPrepMetadata(unittest.TestCase):
             #edge case 4 --> more than one column not found in df (print out exception)
             test_df = pd.DataFrame({"a":["hello", "apple", "basketball"], "b":["yellow","cherry", "book"], "c":["happy","sad", "laugh"], "d":["python","java", "html"]})
             cols = ["a", "f", "h"] #columns f and h are not found in df
-            pm.verify_group_def_columns_in_metadata(test_df, cols)      
+            pm.verify_group_def_columns_in_metadata(test_df, cols)  
+
 
     def test_build_group_names(self):
         logger.debug("test_build_group_names")
@@ -160,11 +162,6 @@ class TestPrepMetadata(unittest.TestCase):
         expected_group_names = ["happy", "sad", "laugh"]
         logger.debug('\nexpected_group_names:\n{}'.format(expected_group_names))
         self.assertEqual(list(new_groups_df), expected_group_names)
-        # isEqual = new_groups_df == expected_group_names
-        # logger.debug('\nisEqual:\n{}'.format(isEqual))
-        # final_bool = isEqual.all
-        # logger.debug('\nfinal_bool:\n{}'.format(final_bool))
-        # self.assertTrue(final_bool)
 
         #edge case 2 --> more than one selected column
         test_df = pd.DataFrame({"a":["hello", "apple", "basketball"], "b":["yellow","cherry", "book"], "c":["happy","sad", "laugh"], "d":["python","java", "html"]})
@@ -175,36 +172,7 @@ class TestPrepMetadata(unittest.TestCase):
         expected_group_names = ["hello_happy", "apple_sad", "basketball_laugh"]
         logger.debug('\nexpected_groups_df:\n{}'.format(expected_group_names))
         self.assertEqual(list(new_groups_df), expected_group_names)
-        # isEqual = new_groups_df == expected_groups_df
-        # logger.debug('\nisEqual:\n{}'.format(isEqual))
-        # final_bool = isEqual.all
-        # logger.debug('\nfinal_bool:\n{}'.format(final_bool))
-        # self.assertTrue(final_bool)
-        
-    def test_clean_group_names(self):
-        logger.debug("test_clean_selected_series")
-        #edge case1 --> no cleaning necessary, dataframe before and after should be same
-        test_df = pd.DataFrame({"a":["hello", "apple", "basketball"], "b":["yellow","cherry", "book"]})
-        logger.debug('\ntest_df:\n{}'.format(test_df))
-        new_series = pm.clean_group_names(test_df["a"])
-        logger.debug('\nnew_series:\n{}'.format(new_series))
-        checker = new_series.equals(test_df["a"])
-        logger.debug('\nchecker:\n{}'.format(checker))
-        self.assertTrue(checker)
-
-        #edge case2 -->cleaning necessary
-        test_series = pd.Series(["he-llo", "app)le", "basketball game"])
-        logger.debug('\ntest_series:\n{}'.format(test_series))
-        new_series = pm.clean_group_names(test_series)
-        logger.debug('\nnew_series:\n{}'.format(new_series))
-        expected_series = pd.Series(["hello", "apple","basketballgame"])
-        logger.debug('\nexpected_series:\n{}'.format(expected_series))
-        isequal = new_series == expected_series
-        logger.debug('\nisequal:\n{}'.format(isequal))
-        self.assertTrue(isequal.all())
-
     
-
     def test_add_groups_to_df(self):
         logger.debug("test_add_groups_to_df")
         test_df = pd.DataFrame({"a":["hello", "apple", "basketball"], "b":["yellow","cherry", "book"]})
@@ -269,24 +237,15 @@ class TestPrepMetadata(unittest.TestCase):
         #else--> check1 is a nonnumber string and isn't equal to "x_" so continues running through rows
         self.assertTrue(allWork)
     
-    def test_build_output_file_path(self):
+    def test_build_output_file_name(self):
         experiment_id = "id"
         test_df = pd.DataFrame({"a":["1A", "2B", "CC", "3D"], "b":["5F", "GG", "4H", "HI"]})
 
-        output_filename = pm.build_output_file_path(experiment_id, test_df.shape)
-        print('\noutput filename:\n{}'.format(output_filename))
-        expected_filename = "id_metadata_r_4_x_2_.txt"
+        output_filename = pm.build_output_file_name(experiment_id, test_df.shape)
+        logger.debug('\nOUTPUT FILENAME:\n{}'.format(output_filename))
+        expected_filename = "id_metadata_r4x2.txt"
         self.assertEqual(output_filename, expected_filename)
-'''
-    def test_save_to_csv(self):
-        logger.debug("test_save_to_csv")
 
-        #opening a file or directory --> make sure it gets cleaned up
-        with tempfile.TemporaryDirectory(prefix = "fhtbioinfpy_test_prep_metadata") as wkdir:
-            output_filepath = os.path.join(wkdir, "prep_metadata")
-            pm.save_to_csv(output_filepath, self.df)
-            self.assertTrue(os.path.exists(output_filepath))
-'''
         
 
 
