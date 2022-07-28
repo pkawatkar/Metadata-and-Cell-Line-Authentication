@@ -12,6 +12,7 @@ import pandas as pd
 import numpy
 
 import plotly.express as pltexpr
+import fhtbioinfpy.prep_metadata.depmapID_lookup as dmid
 
 logger = logging.getLogger(setup_logger.LOGGER_NAME)
 
@@ -26,6 +27,7 @@ def build_parser():
     parser.add_argument("--samples_to_remove_from_metadata", help = "which samples user desires to remove from metadata, if any.", default=[], nargs="+")
     parser.add_argument("--metadata_columns_to_build_groups", help="metadata columns selected to build groups.", required = True,  nargs="+")
     parser.add_argument("--expected_number_replicates", help = "the expected number of replicates the user wants", default = 3)
+    parser.add_argument("--sample_info_file", help = "sample info containing DepMap_ID and the cell line name", type = str, required = True)
     return parser
 
 # def create_full_path(metadata_subdir, metadata_file):
@@ -35,11 +37,7 @@ def build_parser():
 
 
 def load_metadata(input_file):
-    orig_metadata = pd.read_csv(
-        input_file,
-        sep="\t",
-        index_col = "sample_id"
-    )
+    orig_metadata = pd.read_csv(open (input_file, "r"), encoding = "utf-8", sep='\t',  index_col = "sample_id")
     logger.debug("orig_metadata.shape: {}".format(orig_metadata.shape))
     return orig_metadata
 
@@ -179,16 +177,43 @@ def main(args):
     #create R_groups by modifying name of groups to start with an "x_" only if it start with a number
     metadata_df = create_R_Groups(metadata_df, 'group')
 
-    # build output file path
-    output_filename = build_output_file_name(args.experiment_id, metadata_df.shape)
+   
+    metadata_df = dmid.add_cleaned_cl_name(metadata_df, "bio_context_id")
+    sample_info = dmid.shorten_sample_info(args.sample_info_file)
+    sample_info = dmid.add_cleaned_cl_name(sample_info, "stripped_cell_line_name")
+    df_wtih_dmID = dmid.verify_match(metadata_df, sample_info)
+    
 
-    output_filepath = os.path.join(args.output_metadata_subdir, output_filename)
+    # # metadata: build output file path
+    # metadata_output_filename = build_output_file_name(args.experiment_id, df_wtih_dmID.shape)
 
+    # metadata_output_filepath = os.path.join(args.output_metadata_subdir, metadata_output_filename)
+
+    # #save as csv/txt file
+    # metadata_df.to_csv(metadata_output_filepath, sep="\t") 
+
+    # # sample: build output file path
+    # sample_info_output_filename = build_output_file_name(args.experiment_id, df_wtih_dmID.shape)
+
+    # sample_info_output_filepath = os.path.join(args.output_sample_info_subdir, sample_info_output_filename)
+
+    # #save as csv/txt file
+    # metadata_df.to_csv(sample_info_output_filepath, sep="\t") 
+
+
+    #df_wtih_dmID: build output file path
+    df_with_dmID_output_filename = build_output_file_name(args.experiment_id, df_wtih_dmID.shape)
+    df_with_dmID_output_filepath = os.path.join(args.output_metadata_subdir, df_with_dmID_output_filename)
     #save as csv/txt file
-    metadata_df.to_csv(output_filepath, sep="\t")
+    metadata_df.to_csv(df_with_dmID_output_filepath, sep="\t") 
 
     logger.debug("metadata_df.shape: {}".format(metadata_df.shape))
     logger.debug("metadata_df.iloc[3,2]: {}".format(metadata_df.iloc[3,2]))
+
+
+
+
+
 
 class FhtbioinfpyPrepMetadataVerifyColumnsForGroups(Exception):
     pass

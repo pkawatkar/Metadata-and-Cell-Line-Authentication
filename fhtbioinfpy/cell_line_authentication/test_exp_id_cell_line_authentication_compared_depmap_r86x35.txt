@@ -1,0 +1,87 @@
+cid	ChIP.seq.antibody	DepMap_ID	R_group	assay	bio_context_id	bio_context_modification	bio_context_parental_id	bio_sample_type	comments	donor_id	experiment_id	group	in_vivo_animal_id	in_vivo_pert_dose_days	in_vivo_pert_dose_frequency	in_vivo_tissue_type	pert_dose	pert_dose_count	pert_dose_method	pert_dose_str	pert_dose_unit	pert_id	pert_name	pert_synonyms	pert_target_other	pert_target_primary	pert_time	pert_time_str	pert_time_unit	pert_type	sample_prep_ELN_entry_URL	sample_prep_contacts	special_media_for_bio_context	top_corr_depmap_ID	cell_line_match
+A1		ACH-000956	x_22RV1_DMSO_8	RNA-seq	22RV1		22RV1	cell line (in vitro)			NS-22.0001	22RV1_DMSO_8							in vitro			DMSO					8	8 h	h	ctrl_vehicle		Salonee		ACH-000866	False
+A2		ACH-000956	x_22RV1_DMSO_8	RNA-seq	22RV1		22RV1	cell line (in vitro)			NS-22.0001	22RV1_DMSO_8							in vitro			DMSO					8	8 h	h	ctrl_vehicle		Salonee		ACH-000866	False
+A3		ACH-000956	x_22RV1_DMSO_8	RNA-seq	22RV1		22RV1	cell line (in vitro)			NS-22.0001	22RV1_DMSO_8							in vitro			DMSO					8	8 h	h	ctrl_vehicle		Salonee		ACH-000866	False
+A4		ACH-000956	x_22RV1_FHT0006394_8	RNA-seq	22RV1		22RV1	cell line (in vitro)			NS-22.0001	22RV1_FHT0006394_8					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	8	8 h	h	trt_cp		Salonee		ACH-000866	False
+A5		ACH-000956	x_22RV1_FHT0006394_8	RNA-seq	22RV1		22RV1	cell line (in vitro)			NS-22.0001	22RV1_FHT0006394_8					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	8	8 h	h	trt_cp		Salonee		ACH-000866	False
+A6		ACH-000956	x_22RV1_FHT0006394_8	RNA-seq	22RV1		22RV1	cell line (in vitro)			NS-22.0001	22RV1_FHT0006394_8					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	8	8 h	h	trt_cp		Salonee		ACH-000866	False
+A7		ACH-000956	x_22RV1_DMSO_16	RNA-seq	22RV1		22RV1	cell line (in vitro)			NS-22.0001	22RV1_DMSO_16							in vitro			DMSO					16	16 h	h	ctrl_vehicle		Salonee		ACH-000866	False
+A8		ACH-000956	x_22RV1_DMSO_16	RNA-seq	22RV1		22RV1	cell line (in vitro)			NS-22.0001	22RV1_DMSO_16							in vitro			DMSO					16	16 h	h	ctrl_vehicle		Salonee		ACH-000866	False
+A9		ACH-000956	x_22RV1_DMSO_16	RNA-seq	22RV1		22RV1	cell line (in vitro)			NS-22.0001	22RV1_DMSO_16							in vitro			DMSO					16	16 h	h	ctrl_vehicle		Salonee		ACH-000866	False
+A10		ACH-000956	x_22RV1_FHT0006394_16	RNA-seq	22RV1		22RV1	cell line (in vitro)			NS-22.0001	22RV1_FHT0006394_16					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	16	16 h	h	trt_cp		Salonee		ACH-000866	False
+A11		ACH-000956	x_22RV1_FHT0006394_16	RNA-seq	22RV1		22RV1	cell line (in vitro)			NS-22.0001	22RV1_FHT0006394_16					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	16	16 h	h	trt_cp		Salonee		ACH-000866	False
+A12		ACH-000956	x_22RV1_FHT0006394_16	RNA-seq	22RV1		22RV1	cell line (in vitro)			NS-22.0001	22RV1_FHT0006394_16					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	16	16 h	h	trt_cp		Salonee		ACH-000866	False
+A13		ACH-000956	x_22RV1_DMSO_24	RNA-seq	22RV1		22RV1	cell line (in vitro)			NS-22.0001	22RV1_DMSO_24							in vitro			DMSO					24	24 h	h	ctrl_vehicle		Salonee		ACH-000866	False
+A14		ACH-000956	x_22RV1_DMSO_24	RNA-seq	22RV1		22RV1	cell line (in vitro)			NS-22.0001	22RV1_DMSO_24							in vitro			DMSO					24	24 h	h	ctrl_vehicle		Salonee		ACH-000866	False
+A15		ACH-000956	x_22RV1_DMSO_24	RNA-seq	22RV1		22RV1	cell line (in vitro)			NS-22.0001	22RV1_DMSO_24							in vitro			DMSO					24	24 h	h	ctrl_vehicle		Salonee		ACH-002475	False
+A16		ACH-000956	x_22RV1_FHT0006394_24	RNA-seq	22RV1		22RV1	cell line (in vitro)			NS-22.0001	22RV1_FHT0006394_24					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	24	24 h	h	trt_cp		Salonee		ACH-000866	False
+A17		ACH-000956	x_22RV1_FHT0006394_24	RNA-seq	22RV1		22RV1	cell line (in vitro)			NS-22.0001	22RV1_FHT0006394_24					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	24	24 h	h	trt_cp		Salonee		ACH-002475	False
+A18		ACH-000956	x_22RV1_FHT0006394_24	RNA-seq	22RV1		22RV1	cell line (in vitro)			NS-22.0001	22RV1_FHT0006394_24					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	24	24 h	h	trt_cp		Salonee		ACH-002475	False
+A19		ACH-000956	x_22RV1_DMSO_72	RNA-seq	22RV1		22RV1	cell line (in vitro)			NS-22.0001	22RV1_DMSO_72							in vitro			DMSO					72	72 h	h	ctrl_vehicle		Salonee		ACH-000866	False
+A20		ACH-000956	x_22RV1_DMSO_72	RNA-seq	22RV1		22RV1	cell line (in vitro)			NS-22.0001	22RV1_DMSO_72							in vitro			DMSO					72	72 h	h	ctrl_vehicle		Salonee		ACH-002475	False
+A21		ACH-000956	x_22RV1_DMSO_72	RNA-seq	22RV1		22RV1	cell line (in vitro)			NS-22.0001	22RV1_DMSO_72							in vitro			DMSO					72	72 h	h	ctrl_vehicle		Salonee		ACH-000866	False
+A22		ACH-000956	x_22RV1_FHT0006394_72	RNA-seq	22RV1		22RV1	cell line (in vitro)			NS-22.0001	22RV1_FHT0006394_72					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	72	72 h	h	trt_cp		Salonee		ACH-000866	False
+A23		ACH-000956	x_22RV1_FHT0006394_72	RNA-seq	22RV1		22RV1	cell line (in vitro)			NS-22.0001	22RV1_FHT0006394_72					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	72	72 h	h	trt_cp		Salonee		ACH-000866	False
+A24		ACH-000956	x_22RV1_FHT0006394_72	RNA-seq	22RV1		22RV1	cell line (in vitro)			NS-22.0001	22RV1_FHT0006394_72					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	72	72 h	h	trt_cp		Salonee		ACH-000866	False
+A25		ACH-000956	x_22RV1_DMSO_168	RNA-seq	22RV1		22RV1	cell line (in vitro)			NS-22.0001	22RV1_DMSO_168							in vitro			DMSO					168	168 h	h	ctrl_vehicle		Salonee		ACH-000866	False
+A26		ACH-000956	x_22RV1_DMSO_168	RNA-seq	22RV1		22RV1	cell line (in vitro)			NS-22.0001	22RV1_DMSO_168							in vitro			DMSO					168	168 h	h	ctrl_vehicle		Salonee		ACH-000866	False
+A27		ACH-000956	x_22RV1_DMSO_168	RNA-seq	22RV1		22RV1	cell line (in vitro)			NS-22.0001	22RV1_DMSO_168							in vitro			DMSO					168	168 h	h	ctrl_vehicle		Salonee		ACH-000866	False
+A28		ACH-000956	x_22RV1_FHT0006394_168	RNA-seq	22RV1		22RV1	cell line (in vitro)			NS-22.0001	22RV1_FHT0006394_168					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	168	168 h	h	trt_cp		Salonee		ACH-000866	False
+A29		ACH-000956	x_22RV1_FHT0006394_168	RNA-seq	22RV1		22RV1	cell line (in vitro)			NS-22.0001	22RV1_FHT0006394_168					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	168	168 h	h	trt_cp		Salonee		ACH-000866	False
+A30		ACH-000956	x_22RV1_FHT0006394_168	RNA-seq	22RV1		22RV1	cell line (in vitro)			NS-22.0001	22RV1_FHT0006394_168					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	168	168 h	h	trt_cp		Salonee		ACH-000866	False
+A31		ACH-000956	x_22RV1_FHT0068291_24	RNA-seq	22RV1		22RV1	cell line (in vitro)			NS-22.0001	22RV1_FHT0068291_24					100.0		in vitro	100 nM	nM	FHT-0068291	C4 oral BRD9 degrader			BRD9	24	24 h	h	trt_cp		Salonee		ACH-000866	False
+A32		ACH-000956	x_22RV1_FHT0068291_24	RNA-seq	22RV1		22RV1	cell line (in vitro)			NS-22.0001	22RV1_FHT0068291_24					100.0		in vitro	100 nM	nM	FHT-0068291	C4 oral BRD9 degrader			BRD9	24	24 h	h	trt_cp		Salonee		ACH-000866	False
+A33		ACH-000956	x_22RV1_FHT0068291_24	RNA-seq	22RV1		22RV1	cell line (in vitro)			NS-22.0001	22RV1_FHT0068291_24					100.0		in vitro	100 nM	nM	FHT-0068291	C4 oral BRD9 degrader			BRD9	24	24 h	h	trt_cp		Salonee		ACH-000866	False
+B1		ACH-000090	PC3_DMSO_8	RNA-seq	PC3		PC3	cell line (in vitro)			NS-22.0001	PC3_DMSO_8							in vitro			DMSO					8	8 h	h	ctrl_vehicle		Salonee		ACH-000841	False
+B2		ACH-000090	PC3_DMSO_8	RNA-seq	PC3		PC3	cell line (in vitro)			NS-22.0001	PC3_DMSO_8							in vitro			DMSO					8	8 h	h	ctrl_vehicle		Salonee		ACH-000841	False
+B3		ACH-000090	PC3_DMSO_8	RNA-seq	PC3		PC3	cell line (in vitro)			NS-22.0001	PC3_DMSO_8							in vitro			DMSO					8	8 h	h	ctrl_vehicle		Salonee		ACH-000486	False
+B4		ACH-000090	PC3_FHT0006394_8	RNA-seq	PC3		PC3	cell line (in vitro)			NS-22.0001	PC3_FHT0006394_8					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	8	8 h	h	trt_cp		Salonee		ACH-000841	False
+B5		ACH-000090	PC3_FHT0006394_8	RNA-seq	PC3		PC3	cell line (in vitro)			NS-22.0001	PC3_FHT0006394_8					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	8	8 h	h	trt_cp		Salonee		ACH-000841	False
+B6		ACH-000090	PC3_FHT0006394_8	RNA-seq	PC3		PC3	cell line (in vitro)			NS-22.0001	PC3_FHT0006394_8					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	8	8 h	h	trt_cp		Salonee		ACH-000841	False
+B7		ACH-000090	PC3_DMSO_16	RNA-seq	PC3		PC3	cell line (in vitro)			NS-22.0001	PC3_DMSO_16							in vitro			DMSO					16	16 h	h	ctrl_vehicle		Salonee		ACH-000733	False
+B8		ACH-000090	PC3_DMSO_16	RNA-seq	PC3		PC3	cell line (in vitro)			NS-22.0001	PC3_DMSO_16							in vitro			DMSO					16	16 h	h	ctrl_vehicle		Salonee		ACH-000733	False
+B9		ACH-000090	PC3_DMSO_16	RNA-seq	PC3		PC3	cell line (in vitro)			NS-22.0001	PC3_DMSO_16							in vitro			DMSO					16	16 h	h	ctrl_vehicle		Salonee		ACH-000384	False
+B10		ACH-000090	PC3_FHT0006394_16	RNA-seq	PC3		PC3	cell line (in vitro)			NS-22.0001	PC3_FHT0006394_16					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	16	16 h	h	trt_cp		Salonee		ACH-000841	False
+B11		ACH-000090	PC3_FHT0006394_16	RNA-seq	PC3		PC3	cell line (in vitro)			NS-22.0001	PC3_FHT0006394_16					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	16	16 h	h	trt_cp		Salonee		ACH-000841	False
+B12		ACH-000090	PC3_FHT0006394_16	RNA-seq	PC3		PC3	cell line (in vitro)			NS-22.0001	PC3_FHT0006394_16					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	16	16 h	h	trt_cp		Salonee		ACH-000384	False
+B13		ACH-000090	PC3_DMSO_24	RNA-seq	PC3		PC3	cell line (in vitro)			NS-22.0001	PC3_DMSO_24							in vitro			DMSO					24	24 h	h	ctrl_vehicle		Salonee		ACH-000384	False
+B14		ACH-000090	PC3_DMSO_24	RNA-seq	PC3		PC3	cell line (in vitro)			NS-22.0001	PC3_DMSO_24							in vitro			DMSO					24	24 h	h	ctrl_vehicle		Salonee		ACH-000841	False
+B15		ACH-000090	PC3_DMSO_24	RNA-seq	PC3		PC3	cell line (in vitro)			NS-22.0001	PC3_DMSO_24							in vitro			DMSO					24	24 h	h	ctrl_vehicle		Salonee		ACH-000841	False
+B16		ACH-000090	PC3_FHT0006394_24	RNA-seq	PC3		PC3	cell line (in vitro)			NS-22.0001	PC3_FHT0006394_24					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	24	24 h	h	trt_cp		Salonee		ACH-000841	False
+B17		ACH-000090	PC3_FHT0006394_24	RNA-seq	PC3		PC3	cell line (in vitro)			NS-22.0001	PC3_FHT0006394_24					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	24	24 h	h	trt_cp		Salonee		ACH-000841	False
+B18		ACH-000090	PC3_FHT0006394_24	RNA-seq	PC3		PC3	cell line (in vitro)			NS-22.0001	PC3_FHT0006394_24					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	24	24 h	h	trt_cp		Salonee		ACH-000841	False
+B19		ACH-000090	PC3_DMSO_72	RNA-seq	PC3		PC3	cell line (in vitro)			NS-22.0001	PC3_DMSO_72							in vitro			DMSO					72	72 h	h	ctrl_vehicle		Salonee		ACH-000841	False
+B20		ACH-000090	PC3_DMSO_72	RNA-seq	PC3		PC3	cell line (in vitro)			NS-22.0001	PC3_DMSO_72							in vitro			DMSO					72	72 h	h	ctrl_vehicle		Salonee		ACH-000841	False
+B21		ACH-000090	PC3_DMSO_72	RNA-seq	PC3		PC3	cell line (in vitro)			NS-22.0001	PC3_DMSO_72							in vitro			DMSO					72	72 h	h	ctrl_vehicle		Salonee		ACH-000305	False
+B22		ACH-000090	PC3_FHT0006394_72	RNA-seq	PC3		PC3	cell line (in vitro)			NS-22.0001	PC3_FHT0006394_72					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	72	72 h	h	trt_cp		Salonee		ACH-000841	False
+B23		ACH-000090	PC3_FHT0006394_72	RNA-seq	PC3		PC3	cell line (in vitro)			NS-22.0001	PC3_FHT0006394_72					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	72	72 h	h	trt_cp		Salonee		ACH-000841	False
+B24		ACH-000090	PC3_FHT0006394_72	RNA-seq	PC3		PC3	cell line (in vitro)			NS-22.0001	PC3_FHT0006394_72					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	72	72 h	h	trt_cp		Salonee		ACH-000841	False
+B25		ACH-000090	PC3_DMSO_168	RNA-seq	PC3		PC3	cell line (in vitro)			NS-22.0001	PC3_DMSO_168							in vitro			DMSO					168	168 h	h	ctrl_vehicle		Salonee		ACH-000305	False
+B26		ACH-000090	PC3_DMSO_168	RNA-seq	PC3		PC3	cell line (in vitro)			NS-22.0001	PC3_DMSO_168							in vitro			DMSO					168	168 h	h	ctrl_vehicle		Salonee		ACH-000841	False
+B27		ACH-000090	PC3_DMSO_168	RNA-seq	PC3		PC3	cell line (in vitro)			NS-22.0001	PC3_DMSO_168							in vitro			DMSO					168	168 h	h	ctrl_vehicle		Salonee		ACH-000841	False
+B28		ACH-000090	PC3_FHT0006394_168	RNA-seq	PC3		PC3	cell line (in vitro)			NS-22.0001	PC3_FHT0006394_168					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	168	168 h	h	trt_cp		Salonee		ACH-000841	False
+B29		ACH-000090	PC3_FHT0006394_168	RNA-seq	PC3		PC3	cell line (in vitro)			NS-22.0001	PC3_FHT0006394_168					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	168	168 h	h	trt_cp		Salonee		ACH-000841	False
+B30		ACH-000090	PC3_FHT0006394_168	RNA-seq	PC3		PC3	cell line (in vitro)			NS-22.0001	PC3_FHT0006394_168					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	168	168 h	h	trt_cp		Salonee		ACH-000305	False
+B31		ACH-000090	PC3_FHT0068291_24	RNA-seq	PC3		PC3	cell line (in vitro)			NS-22.0001	PC3_FHT0068291_24					100.0		in vitro	100 nM	nM	FHT-0068291	C4 oral BRD9 degrader			BRD9	24	24 h	h	trt_cp		Salonee		ACH-000841	False
+B32		ACH-000090	PC3_FHT0068291_24	RNA-seq	PC3		PC3	cell line (in vitro)			NS-22.0001	PC3_FHT0068291_24					100.0		in vitro	100 nM	nM	FHT-0068291	C4 oral BRD9 degrader			BRD9	24	24 h	h	trt_cp		Salonee		ACH-000841	False
+B33		ACH-000090	PC3_FHT0068291_24	RNA-seq	PC3		PC3	cell line (in vitro)			NS-22.0001	PC3_FHT0068291_24					100.0		in vitro	100 nM	nM	FHT-0068291	C4 oral BRD9 degrader			BRD9	24	24 h	h	trt_cp		Salonee		ACH-000733	False
+C1		ACH-001275	SYO1_DMSO_8	RNA-seq	SYO1		SYO1	cell line (in vitro)			NS-22.0001	SYO1_DMSO_8							in vitro			DMSO					8	8 h	h	ctrl_vehicle		Salonee		ACH-000940	False
+C2		ACH-001275	SYO1_DMSO_8	RNA-seq	SYO1		SYO1	cell line (in vitro)			NS-22.0001	SYO1_DMSO_8							in vitro			DMSO					8	8 h	h	ctrl_vehicle		Salonee		ACH-000940	False
+C3		ACH-001275	SYO1_DMSO_8	RNA-seq	SYO1		SYO1	cell line (in vitro)			NS-22.0001	SYO1_DMSO_8							in vitro			DMSO					8	8 h	h	ctrl_vehicle		Salonee		ACH-001275	True
+C4		ACH-001275	SYO1_FHT0006394_8	RNA-seq	SYO1		SYO1	cell line (in vitro)			NS-22.0001	SYO1_FHT0006394_8					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	8	8 h	h	trt_cp		Salonee		ACH-001275	True
+C5		ACH-001275	SYO1_FHT0006394_8	RNA-seq	SYO1		SYO1	cell line (in vitro)			NS-22.0001	SYO1_FHT0006394_8					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	8	8 h	h	trt_cp		Salonee		ACH-000940	False
+C7		ACH-001275	SYO1_DMSO_16	RNA-seq	SYO1		SYO1	cell line (in vitro)			NS-22.0001	SYO1_DMSO_16							in vitro			DMSO					16	16 h	h	ctrl_vehicle		Salonee		ACH-000940	False
+C8		ACH-001275	SYO1_DMSO_16	RNA-seq	SYO1		SYO1	cell line (in vitro)			NS-22.0001	SYO1_DMSO_16							in vitro			DMSO					16	16 h	h	ctrl_vehicle		Salonee		ACH-000940	False
+C9		ACH-001275	SYO1_DMSO_16	RNA-seq	SYO1		SYO1	cell line (in vitro)			NS-22.0001	SYO1_DMSO_16							in vitro			DMSO					16	16 h	h	ctrl_vehicle		Salonee		ACH-000940	False
+C10		ACH-001275	SYO1_FHT0006394_16	RNA-seq	SYO1		SYO1	cell line (in vitro)			NS-22.0001	SYO1_FHT0006394_16					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	16	16 h	h	trt_cp		Salonee		ACH-000292	False
+C11		ACH-001275	SYO1_FHT0006394_16	RNA-seq	SYO1		SYO1	cell line (in vitro)			NS-22.0001	SYO1_FHT0006394_16					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	16	16 h	h	trt_cp		Salonee		ACH-000940	False
+C12		ACH-001275	SYO1_FHT0006394_16	RNA-seq	SYO1		SYO1	cell line (in vitro)			NS-22.0001	SYO1_FHT0006394_16					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	16	16 h	h	trt_cp		Salonee		ACH-000940	False
+C13		ACH-001275	SYO1_DMSO_24	RNA-seq	SYO1		SYO1	cell line (in vitro)			NS-22.0001	SYO1_DMSO_24							in vitro			DMSO					24	24 h	h	ctrl_vehicle		Salonee		ACH-000940	False
+C14		ACH-001275	SYO1_DMSO_24	RNA-seq	SYO1		SYO1	cell line (in vitro)			NS-22.0001	SYO1_DMSO_24							in vitro			DMSO					24	24 h	h	ctrl_vehicle		Salonee		ACH-001275	True
+C15		ACH-001275	SYO1_DMSO_24	RNA-seq	SYO1		SYO1	cell line (in vitro)			NS-22.0001	SYO1_DMSO_24							in vitro			DMSO					24	24 h	h	ctrl_vehicle		Salonee		ACH-000940	False
+C16		ACH-001275	SYO1_FHT0006394_24	RNA-seq	SYO1		SYO1	cell line (in vitro)			NS-22.0001	SYO1_FHT0006394_24					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	24	24 h	h	trt_cp		Salonee		ACH-000940	False
+C17		ACH-001275	SYO1_FHT0006394_24	RNA-seq	SYO1		SYO1	cell line (in vitro)			NS-22.0001	SYO1_FHT0006394_24					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	24	24 h	h	trt_cp		Salonee		ACH-000940	False
+C18		ACH-001275	SYO1_FHT0006394_24	RNA-seq	SYO1		SYO1	cell line (in vitro)			NS-22.0001	SYO1_FHT0006394_24					15.0		in vitro	15 nM	nM	FHT-0006394				BRD9	24	24 h	h	trt_cp		Salonee		ACH-000940	False
+C19		ACH-001275	SYO1_FHT0068291_24	RNA-seq	SYO1		SYO1	cell line (in vitro)			NS-22.0001	SYO1_FHT0068291_24					100.0		in vitro	100 nM	nM	FHT-0068291	C4 oral BRD9 degrader			BRD9	24	24 h	h	trt_cp		Salonee		ACH-000940	False
+C20		ACH-001275	SYO1_FHT0068291_24	RNA-seq	SYO1		SYO1	cell line (in vitro)			NS-22.0001	SYO1_FHT0068291_24					100.0		in vitro	100 nM	nM	FHT-0068291	C4 oral BRD9 degrader			BRD9	24	24 h	h	trt_cp		Salonee		ACH-000940	False
+C21		ACH-001275	SYO1_FHT0068291_24	RNA-seq	SYO1		SYO1	cell line (in vitro)			NS-22.0001	SYO1_FHT0068291_24					100.0		in vitro	100 nM	nM	FHT-0068291	C4 oral BRD9 degrader			BRD9	24	24 h	h	trt_cp		Salonee		ACH-000940	False

@@ -1,7 +1,0 @@
-sample_id	orig_sample_id	assay	bio_sample_type	donor_id	in_vivo_animal_id	in_vivo_tissue_type	bio_context_parental_id	bio_context_id	bio_context_modification	special_media_for_bio_context	pert_id	pert_type	pert_target_primary	pert_target_other	pert_dose_method	in_vivo_pert_dose_days	in_vivo_pert_dose_frequency	pert_dose_count	pert_dose	pert_dose_unit	pert_time	pert_time_unit	pert_name	pert_synonyms	sample_prep_contacts	sample_prep_ELN_entry_URL	ChIP-seq antibody	comments
-S6394_1	6394_1	ATAC-seq	cell line (in vitro)				HSES2R	HSES2R			FHT-0006394	trt_cp	BRD9		in vitro				15	nM	24	h	dBRD9	FHD609				
-S6394_2	6394_2	ATAC-seq	cell line (in vitro)				HSES2R	HSES2R			FHT-0006394	trt_cp	BRD9		in vitro				15	nM	24	h	dBRD9	FHD609				
-S6394_3	6394_3	ATAC-seq	cell line (in vitro)				HSES2R	HSES2R			FHT-0006394	trt_cp	BRD9		in vitro				15	nM	24	h	dBRD9	FHD609				
-DMSO_1	DMSO_1	ATAC-seq	cell line (in vitro)				HSES2R	HSES2R			DMSO	ctrl_vehicle			in vitro				15	nM	24	h	dBRD9	FHD609				
-DMSO_2	DMSO_2	ATAC-seq	cell line (in vitro)				HSES2R	HSES2R			DMSO	ctrl_vehicle			in vitro				15	nM	24	h	dBRD9	FHD609				
-DMSO_3	DMSO_3	ATAC-seq	cell line (in vitro)				HSES2R	HSES2R			DMSO	ctrl_vehicle			in vitro				15	nM	24	h	dBRD9	FHD609				
